@@ -1,0 +1,15 @@
+library("arules")
+data=read.csv(file.choose())
+View(data)
+class(data)
+x=as(as.data.frame(data),"transactions")
+class(x)
+summary(x)
+arules=apriori(x,parameter = list(support=0.003,confidence=0.6,minlen=3))
+arules
+arules=apriori(x,parameter = list(support=0.003,confidence=0.6,minlen=3))
+head(quality(arules))
+arules=apriori(x,parameter = list(support=0.001,confidence=0.5,minlen=3))
+arules
+rules=inspect(head(sort(arules,by="lift")))
+head(quality(arules))
